@@ -13,6 +13,25 @@ class MainPage extends StatefulWidget {
 class _StartSessionPageState extends State<MainPage> {
   int selectedIndex = 0;
 
+  List<Widget> navIcons = [
+    AppIcons.localFireDepartment,
+    AppIcons.personCelebrate,
+    AppIcons.homeIotDevice,
+    AppIcons.listAlt,
+  ];
+
+  List<Widget> buildNavigationItems() {
+    List<Widget> items = [];
+    for (int i = 0; i < navIcons.length; i++) {
+      items.add(NavigationItem(
+        onTap: () => onItemTapped(i),
+        active: selectedIndex == i,
+        child: navIcons[i],
+      ));
+    }
+    return items;
+  }
+
   onItemTapped(int index) {
     setState(() {
       selectedIndex = index;
@@ -21,45 +40,58 @@ class _StartSessionPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
         bottomNavigationBar: BottomAppBar(
+          height: 64,
           color: Colors.black.withOpacity(0.3),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              NavigationItem(
-                onTap: () => onItemTapped(0),
-                child: AppIcons.homeIotDevice,
-                active: selectedIndex == 0,
-              ),
-              NavigationItem(
-                onTap: () => onItemTapped(1),
-                child: AppIcons.listAlt,
-                active: selectedIndex == 1,
-              ),
-              NavigationItem(
-                onTap: () => onItemTapped(2),
-                child: AppIcons.personCelebrate,
-                active: selectedIndex == 2,
-              ),
-            ],
+            children: buildNavigationItems(),
           ),
         ),
         extendBodyBehindAppBar: true,
         extendBody: true,
         appBar: AppBar(
-          title: const Text('Sauna Zen'),
-          backgroundColor: Colors.black.withOpacity(0.2),
-        ),
+            toolbarHeight: 48,
+            title: const Text(appTitle),
+            titleTextStyle: AppStyles.appBarTitle,
+            backgroundColor: Colors.black.withOpacity(0.2),
+            actionsIconTheme: const IconThemeData(color: Colors.white),
+            actions: [
+              Padding(
+                padding: const EdgeInsets.only(right: 10),
+                child: IconButton(
+                  icon: const Icon(Icons.notifications),
+                  onPressed: () {},
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  right: 10,
+                ),
+                child: IconButton(
+                  icon: const Icon(Icons.settings),
+                  onPressed: () {},
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 10),
+                child: IconButton(
+                  icon: const Icon(Icons.account_circle),
+                  onPressed: () {},
+                ),
+              ),
+            ]),
         body: Container(
+            padding:
+                const EdgeInsets.only(top: 60, bottom: 80, left: 16, right: 16),
             width: double.infinity,
             height: double.infinity,
             decoration: const BoxDecoration(
               gradient: AppColors.primaryGradient,
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+            child: const Column(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 PrimaryButton(),
               ],
@@ -72,7 +104,11 @@ class NavigationItem extends StatefulWidget {
   final Function onTap;
   final bool active;
 
-  const NavigationItem({super.key, required this.child, required this.onTap, required this.active});
+  const NavigationItem(
+      {super.key,
+      required this.child,
+      required this.onTap,
+      required this.active});
 
   @override
   State<NavigationItem> createState() => _NavigationItemState();
@@ -82,6 +118,7 @@ class _NavigationItemState extends State<NavigationItem> {
   backgroundColor() {
     return widget.active ? Colors.black.withOpacity(0.2) : Colors.transparent;
   }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -91,16 +128,14 @@ class _NavigationItemState extends State<NavigationItem> {
         borderRadius: BorderRadius.circular(14),
       ),
       onHover: (value) {
-        setState(() {
-        });
+        setState(() {});
       },
       onTap: () {
-        setState(() {
-        });
+        setState(() {});
         widget.onTap();
       },
       child: Container(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(14),
             color: backgroundColor(),

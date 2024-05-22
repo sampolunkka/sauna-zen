@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/svg.dart';
 
+const String appTitle = 'Heat Hero';
+
 class AppColors {
   static const Gradient primaryGradient = LinearGradient(
     colors: [Color(0xFF22dcfd), Color(0xFF5865b9)],
@@ -14,6 +16,20 @@ class AppColors {
 }
 
 class AppStyles {
+
+  static TextStyle appBarTitle = TextStyle(
+    color: AppColors.textPrimary,
+    fontSize: 24,
+    fontWeight: FontWeight.w400,
+    shadows: [
+      Shadow(
+        color: Color(0xFF000000).withOpacity(0.1),
+        offset: Offset(0, 2),
+        blurRadius: 1,
+      ),
+    ],
+  );
+
   static TextStyle primaryButton = TextStyle(
     color: AppColors.textPrimary,
     fontSize: 24,
@@ -47,4 +63,9 @@ class AppIcons {
     height: 24
   );
 
+  static SvgPicture localFireDepartment = SvgPicture.asset(
+    'assets/icons/local_fire_department.svg',
+    width: 24,
+    height: 24
+  );
 }
