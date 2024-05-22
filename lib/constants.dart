@@ -32,22 +32,19 @@ class AppIcons {
   static SvgPicture homeIotDevice = SvgPicture.asset(
     'assets/icons/home_iot_device.svg',
     width: 24,
-    height: 24,
-    colorFilter: const ColorFilter.mode(AppColors.textPrimary, BlendMode.srcIn),
+    height: 24
   );
 
   static SvgPicture listAlt = SvgPicture.asset(
     'assets/icons/list_alt.svg',
     width: 24,
-    height: 24,
-    colorFilter: const ColorFilter.mode(AppColors.textPrimary, BlendMode.srcIn),
+    height: 24
   );
 
   static SvgPicture personCelebrate = SvgPicture.asset(
     'assets/icons/person_celebrate.svg',
     width: 24,
-    height: 24,
-    colorFilter: const ColorFilter.mode(AppColors.textPrimary, BlendMode.srcIn),
+    height: 24
   );
 
 }
